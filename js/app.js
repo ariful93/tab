@@ -1,17 +1,25 @@
-let tabLists = document.querySelectorAll('.tab-items')
-let indicator = document.querySelector('.indicator')
-
+let tabLists = document.querySelectorAll('.tab-items');
 
 tabLists.forEach((list) => {
     let tabItems = list.querySelectorAll('.tab-btn')
     let tabContents = list.querySelectorAll('.tab-content')
+    let indicator = list.querySelector('.indicator');
+
     tabItems.forEach((item, index) => {
-        let widthPercent = 100 / tabItems.length;
-        indicator.style.width = `${widthPercent}%`;
+       
+        // add width of indicator
+        if ( indicator ) {
+            let widthPercent = 100 / tabItems.length;
+            indicator.style.width = `${widthPercent}%`;
+        }
         
         item.addEventListener('click', () => {
+
+             // add indicator style
+            if ( indicator ) {
             let width = indicator.offsetWidth
             indicator.style.transform = `translate(calc(${width}px * ${index}))`;
+            }
             
             
             // remove active class
